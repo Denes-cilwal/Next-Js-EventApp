@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
 
 
-const posts = [
+
+const Post = [
     {
       "userId": 1,
       "id": 1,
@@ -604,25 +605,17 @@ const posts = [
     }
   ]
 
-
- const Posts = ()=>{
-    return(
-    <div>
-        <ul>
-            {posts.map((post)=>{
-                return(
-                    <li>
-                        <h1>{post.userId}</h1>
-                        <p >{post.title}</p>
-                        <p>{post.body}</p>
-                    </li>
-                )
-               
-                
-            })}
-        </ul>
-    </div>
+  export default function Posts (){
+    return (
+       <ul>
+          {Post.map((post)=>{
+              return(
+                  <li>
+                      <h3>{post.title}</h3>
+                      <p>{post.body}</p>
+                  </li>
+              )
+          })}
+       </ul>
     )
 }
-
-export default Posts;
