@@ -1,16 +1,32 @@
-import React from 'react'
-import styles from "./Post.module.css"
+import React from "react";
 import Link from "next/link";
 
-export default function FPosts({ id, title, body }) {
-    return (
-            <>  
-            <h3 className={styles.postHeading}>
-                <Link href="/posts/[id]" as={"/posts/" + id}>
-                  <a>{title}</a>
-                </Link>
-              </h3>
-            <p className={styles.postBody}>{body}</p>
-            </>
-    );
-  }
+//import styles from "./Post.module.sass";
+
+import styled from "@emotion/styled";
+
+const StyledH3 = styled.h3({
+  fontSize: "18px",
+  marginTop: "60px",
+});
+
+const PostLink = styled.a`
+  color: #333;
+`;
+const PostBody = styled.p`
+color:#444;
+`
+
+
+export default function FPost({ id, title, body }) {
+  return (
+    <>
+      <StyledH3>
+        <Link href="/posts/[id]" as={"/posts/" + id}>
+          <PostLink>{title}</PostLink>
+        </Link>
+      </StyledH3>
+      <PostBody>{body}</PostBody>
+    </>
+  );
+}

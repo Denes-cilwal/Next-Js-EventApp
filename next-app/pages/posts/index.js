@@ -1,5 +1,5 @@
 import React from "react";
-import FPosts from "./components/Post";
+import Post from "./components/Post/Post";
 
 // const posts = [
 //   {
@@ -718,8 +718,7 @@ export default function Posts({ posts }) {
       {posts.map((post) => {
         return (
           <li key={post.id}>
-            
-            <FPosts {...posts}/>
+            <FPost {...post} />
           </li>
         );
       })}
@@ -727,18 +726,7 @@ export default function Posts({ posts }) {
   );
 }
 
-// export async function getStaticProps() {
-//   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-//   const posts = await res.json();
-
-//   return {
-//     props: {
-//       posts, // 
-//     },
-//   };
-// }
-
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts = await res.json();
 
@@ -748,3 +736,14 @@ export async function getServerSideProps() {
     },
   };
 }
+
+// export async function getServerSideProps() {
+//   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+//   const posts = await res.json();
+
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// }
