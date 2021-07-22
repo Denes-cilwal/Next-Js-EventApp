@@ -1,4 +1,5 @@
 import React from 'react'; 
+import {useRouter} from "next/router";
 // const posts = [
 //   {
 //     userId: 1,
@@ -542,8 +543,15 @@ import React from 'react';
 // }
 
 export default function Post({ postData }) {
-// const postData = getPostDataById(id);
+  const router = useRouter()
 
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
+  // Render post...
   return (
     <div>
       <h2>{postData.title}</h2>
@@ -552,26 +560,23 @@ export default function Post({ postData }) {
   );
 }
 
-// Post.getInitialProps = async ({ query }) => {
-//   const { id } = query;
-
-//   return { id };
-// };
-
-// run time we know about url but build time ma we dont know that things, so 
-// use 
 
 
-
+// This function gets called at build time
 export async  function getStaticPaths(){
   // create array for path (static or api call to retrieve posts)
-const paths = ["/posts/1", "/posts/2"]
+  // / Only `/posts/1` and `/posts/2` are generated at build time
+  const paths = ["/posts/1", "/posts/2"]
   return{
     paths,
-    fallback:false
+    // Enable statically generating additional pages
+    // For example: `/posts/3`
+    fallback:true
   }
 }
 
+
+// This function gets called at build time
 export async function getStaticProps({query, params}) {
   
   //id from query || params
