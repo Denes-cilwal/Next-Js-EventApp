@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import FPosts from "./components/Post";
 
 // const posts = [
 //   {
@@ -718,12 +718,8 @@ export default function Posts({ posts }) {
       {posts.map((post) => {
         return (
           <li key={post.id}>
-            <h3>
-              <Link href="/posts/[id]" as={"/posts/" + post.id}>
-                <a>{post.title}</a>
-              </Link>
-            </h3>
-            <p>{post.body}</p>
+            
+            <FPosts {...posts}/>
           </li>
         );
       })}
