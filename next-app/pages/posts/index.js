@@ -1,10 +1,21 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import Post from "./components/Post/Post";
-
+ //import Header from "./components/Header"; // static import
 import styles from "./posts.module.scss";
 
+// use dynamic import 
+const Header = dynamic( () => import("./components/Header").then((mod) => mod.PostHeader),{
+      loading: () => <p>Loading Header...</p>,
+      ssr: false,
+    }
+  );
+ 
 export default function Posts({ posts }) {
   return (
+      <>
+    
+    <Header/>
     <ul className="row">
       {posts.map((post) => {
         return (
@@ -14,7 +25,9 @@ export default function Posts({ posts }) {
         );
       })}
     </ul>
+    </>
   );
+
 }
 
 export async function getStaticProps() {
