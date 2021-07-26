@@ -18,7 +18,7 @@ export default function Posts({ posts }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${process.env.POST_URL}`);
   const posts = await res.json();
 
   return {
